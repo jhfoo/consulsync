@@ -1,0 +1,6 @@
+PWD=`dirname $0`
+cd "$PWD/.."
+
+echo "Working dir: $PWD"
+./venv/bin/pip3 uninstall -y consulsync
+./venv/bin/pip3 install dist/consulsync-0.0.1-py3-none-any.whl

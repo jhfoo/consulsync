@@ -1,3 +1,6 @@
+PWD=`dirname $0`
+cd "$PWD/.."
+
 if command -v freebsd-version > /dev/null; then
   echo [DETECTED OS] FreeBSD
   echo == Installing packages
@@ -8,8 +11,9 @@ echo == Remove existing venv/
 rm -rf venv
 
 echo == Creating venv/
-python3.9 -m venv venv
+python3 -m venv venv
 ./venv/bin/python3 -m pip install --upgrade pip
+./venv/bin/pip3 install build
 
 echo == Installing dependencies
 ./venv/bin/pip3 install -r conf/requirements.txt
