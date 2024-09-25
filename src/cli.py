@@ -1,0 +1,3 @@
+import consulsync
+
+consulsync.doCli()
