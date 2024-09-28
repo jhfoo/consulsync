@@ -1,4 +1,3 @@
-./venv/bin/python3 src/cli.py $@
 PWD=`dirname $0`
 #cd "$PWD/.."
 
