@@ -1,5 +1,5 @@
 PWD=`dirname $0`
 #cd "$PWD/.."
 
-echo `dirname $0`
+# echo `dirname $0`
 $PWD/../venv/bin/python3 $PWD/../src/cli.py $@

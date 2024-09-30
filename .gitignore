@@ -1,5 +1,6 @@
-data/up
-data/down
+# nothing in data/
+data
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
