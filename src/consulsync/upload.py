@@ -42,6 +42,9 @@ def removeKey(keys, key):
 
 
 def upload(args):
+  print (f'Consul host: {args.server}')
+  print (f'Consul root path: {args.path}')
+  print (f'Data folder: {args.dir}')
   consul = util.getConsul(args.server)
   
   # print (f'- dir: {args.dir}')
@@ -60,19 +63,21 @@ def upload(args):
     # for DirName in dirs:
     #   print (f'root: {root}, dir: {DirName}')
     for file in files:
+      RootNoSlash = root[PrefixLength:]
+      print (f'File: {file}, dir: ,RootNoSlash: {RootNoSlash}')
+
+        # key = RootNoSlash[1:] if RootNoSlash.startswith ('/') else RootNoSlash
+
+        # if key.startswith(args.path):
+        #   # remove key from tracker
+        #   removeKey(ExistingKeys, key)
+
+        #   print (f'- key: {key}, file: {file}')
+
       with open(root + '/' + file, 'r') as infile:
-        RootNoSlash = root[PrefixLength:]
-        if RootNoSlash.startswith ('/'):
-          key = RootNoSlash[1:]
-
-        if key.startswith(args.path):
-          # remove key from tracker
-          removeKey(ExistingKeys, key)
-
-          print (f'- key: {key}, file: {file}')
-          data = yaml.safe_load(infile)
-          # print (data)
-          consul.kv.put(key, json.dumps(data, indent = 2))
+        data = yaml.safe_load(infile)
+        # print (data)
+        consul.kv.put(RootNoSlash, json.dumps(data, indent = 2))
 
   print (f'- Unused keys: {ExistingKeys.keys()}')
   # remove unused keys
